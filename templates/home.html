@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinBuild</title>
+    <link rel="stylesheet" href="static/css/style_home.css">
+</head>
+<body>
+    <header>
+        <button id="loginBtn">Logout</button>
+    </header>
+
+    <main>
+        <h1>FinBuild</h1>
+        <div id="typewriter"></div>
+        
+        <div class="tile">
+            <img src="static/images/image6.jpg" alt="Statement Analyser">
+            <button id="goToStatementAnalysisBtn">Go to Statement Analysis</button>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script_home.js') }}"></script>
+</body>
+</html>
