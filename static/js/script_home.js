@@ -30,4 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("goToStatementAnalysisBtn").addEventListener("click", () => {
         window.location.href = "/statement_analyse";
     });
+
+    // Handle redirection to Budget Planner page
+    document.getElementById("goToBudgetPlannerBtn").addEventListener("click", () => {
+        window.location.href = "/budget_planner";
+    });
+
+    // Handle redirection to Budget Planner page
+    document.getElementById("goToArticlesBtn").addEventListener("click", () => {
+        window.location.href = "/articles";
+    });
 });
