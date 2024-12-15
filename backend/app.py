@@ -17,7 +17,7 @@ UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), "uploads")
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Your News API key
-NEWS_API_KEY = '2d81a14081ae4493892bbcf8a2526c47'
+NEWS_API_KEY = 'Your api key'
 
 
 # Load environment variables from .env file
