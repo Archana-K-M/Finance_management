@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statement Analyser</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_statement.css') }}">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Statement Analyser</h2>
+        <form id="uploadForm">
+            <label for="bank">Enter Bank Name:</label>
+            <input type="text" id="bank" name="bank" placeholder="Type bank name" required>
+            
+            <label for="file">Upload DOCX File:</label>
+            <input type="file" id="file" name="file" accept=".docx" required>
+            
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="output">
+            <h3>Recommendation:</h3>
+            <p id="recommend_message"></p>
+
+            <h3>Line Chart (Date vs Balance):</h3>
+            <canvas id="lineChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript -->
+    <script src="{{ url_for('static', filename='js/script_statement.js') }}"></script>
+</body>
+</html>

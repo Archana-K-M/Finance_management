@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_index.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="left-container">
+            <div class="form-container">
+                <div class="form-header">
+                    <button id="login-tab" class="active">Login</button>
+                    <button id="signup-tab">Signup</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="login-form" action="/login" method="POST">
+                    <h2>Login</h2>
+                    <input type="text" name="username" placeholder="Email Address" required>
+                    <div class="password-wrapper">
+                        <input type="password" name="password" id="login-password" placeholder="Password" required>
+                        <span class="toggle-password" id="login-toggle-password">👁</span>
+                    </div>
+                    <button type="submit" href="dashboard" class="submit-btn">Login</button>
+                </form>
+
+                <!-- Signup Form -->
+                <form id="signup-form" action="/register" method="POST" style="display: none;">
+                    <h2>Signup</h2>
+                    <input type="text" name="username" placeholder="Email Address" required>
+                    <div class="password-wrapper">
+                        <input type="password" name="password" id="signup-password" placeholder="Password" required>
+                        <span class="toggle-password" id="signup-toggle-password">👁</span>
+                    </div>
+                    <button type="submit" href="dashboard" class="submit-btn">Signup</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="right-container">
+            <img src="{{ url_for('static', filename='images/Screen Recording 2024-12-15 125704.gif') }}" alt="Animated GIF">
+        </div>
+    </div>
+
+    <button id="dark-mode-btn">🌙</button>
+    <script src="{{ url_for('static', filename='js/script_index.js') }}"></script>
+</body>
+</html>
