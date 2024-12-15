@@ -10,27 +10,31 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Statement Analyser</h2>
-        <form id="uploadForm">
-            <label for="bank">Enter Bank Name:</label>
-            <input type="text" id="bank" name="bank" placeholder="Type bank name" required>
-            
-            <label for="file">Upload DOCX File:</label>
-            <input type="file" id="file" name="file" accept=".docx" required>
-            
-            <button type="submit">Submit</button>
-        </form>
+    <header>
+        <h1>Statement Analyser</h1>
+        <button id="homeBtn">Home</button>
+    </header>
+    <main>
+        <div class="container">
+            <form id="uploadForm">
+                <label for="bank">Enter Bank Name:</label>
+                <input type="text" id="bank" name="bank" placeholder="Type bank name" required>
+                
+                <label for="file">Upload DOCX File:</label>
+                <input type="file" id="file" name="file" accept=".docx" required>
+                
+                <button type="submit">Submit</button>
+            </form>
 
-        <div id="output">
-            <h3>Recommendation:</h3>
-            <p id="recommend_message"></p>
+            <div id="output">
+                <h3>Recommendation:</h3>
+                <p id="recommend_message"></p>
 
-            <h3>Line Chart (Date vs Balance):</h3>
-            <canvas id="lineChart" width="400" height="200"></canvas>
+                <h3>Line Chart (Date vs Balance):</h3>
+                <canvas id="lineChart" width="400" height="200"></canvas>
+            </div>
         </div>
-    </div>
-
+    </main>
     <!-- Link to external JavaScript -->
     <script src="{{ url_for('static', filename='js/script_statement.js') }}"></script>
 </body>

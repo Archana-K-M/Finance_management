@@ -1,3 +1,4 @@
+// Attach the event listener for the form submission
 document.getElementById("uploadForm").addEventListener("submit", async function (event) {
     event.preventDefault(); // Prevent form submission
 
@@ -74,3 +75,7 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
     }
 });
 
+// Attach the event listener for the home button outside of the form submission handler
+document.getElementById("homeBtn").addEventListener("click", () => {
+    window.location.href = "/dashboard"; // Redirect to the home page
+});

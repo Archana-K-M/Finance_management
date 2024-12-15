@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle the login button click
     document.getElementById("loginBtn").addEventListener("click", () => {
-        alert("Login functionality is not implemented yet.");
+        window.location.href = "/";
     });
 
     // Handle redirection to Statement Analysis page
@@ -36,8 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = "/budget_planner";
     });
 
-    // Handle redirection to Budget Planner page
+    // Handle redirection to Articles page
     document.getElementById("goToArticlesBtn").addEventListener("click", () => {
         window.location.href = "/articles";
     });
+
+    // Handle redirection to Chat Bot page
+    document.getElementById("goToChatBotBtn").addEventListener("click", () => {
+        window.location.href = "/chatbot";
+    });
+
 });
