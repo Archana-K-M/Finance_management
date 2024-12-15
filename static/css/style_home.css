@@ -1,6 +1,7 @@
-/* General Styling */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', Arial, sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
@@ -49,7 +50,7 @@ h1 {
     white-space: nowrap;
     overflow: hidden;
     width: 0;
-    animation: typing 4s steps(30) 1s forwards, resetText 0s step-end infinite;
+    animation: typing 4s steps(30) 1s forwards;
 }
 
 @keyframes typing {
@@ -58,41 +59,37 @@ h1 {
     }
 }
 
-@keyframes blink {
-    50% {
-        border-color: transparent;
-    }
-}
-
 /* Tile Section */
 .tile {
-    margin-top: 50px;
     display: inline-block;
+    text-align: center;
+    margin: 20px;
     background-color: #ffffff;
-    padding: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    text-align: center;
+    width: 220px; /* Fixed width for the tile */
 }
 
 .tile img {
-    width: 100%;
-    height: auto;
+    width: 200px; /* Fixed width */
+    height: 150px; /* Fixed height */
+    object-fit: cover; /* Ensures the image scales and crops without distortion */
     border-radius: 8px;
+    margin-bottom: 10px;
 }
 
 .tile button {
-    margin-top: 10px;
-    background-color: #4CAF50;
+    background-color: #007BFF;
     color: white;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%; /* Button width matches the tile */
 }
 
 .tile button:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
 }
