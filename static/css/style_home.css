@@ -93,3 +93,30 @@ h1 {
 .tile button:hover {
     background-color: #0056b3;
 }
+
+/* Floating Chatbot Button */
+#goToChatBotBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+#goToChatBotBtn:hover {
+    background-color: #0056b3;
+}
+
+

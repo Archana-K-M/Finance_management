@@ -4,7 +4,9 @@ import psycopg2
 import bcrypt
 from statement import read_and_concat_tables 
 import pandas as pd
+from dotenv import load_dotenv
 import os
+from bot import FinanceChatbotModel 
 import requests
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
@@ -16,6 +18,16 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Your News API key
 NEWS_API_KEY = '2d81a14081ae4493892bbcf8a2526c47'
+
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Access the API key
+api_key = os.getenv("GEMINI_API_KEY")
+
+# Initialize the chatbot model with your API key
+chatbot = FinanceChatbotModel(api_key)
 
 # Database connection
 def get_db_connection():
@@ -103,6 +115,10 @@ def budget_planner():
 def articles():
     return render_template('articles.html')  # Render your articles page
 
+@app.route('/chatbot')
+def chatbot_page():
+    return render_template('chatbot.html')  # Render your chatbot page
+
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -174,6 +190,20 @@ def get_articles():
             return jsonify({"error": "No articles found"}), 404
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route("/chatbot", methods=["POST"])
+def chatbot_interaction():
+    data = request.get_json()  
+    user_message = data.get("message", "")  # Get user input from the JSON
+
+    if not user_message:
+        return jsonify({"error": "No message provided"})
+
+    # Get the response from the chatbot
+    bot_response = chatbot.get_response(user_message)
+
+    # Return the bot's response as JSON
+    return jsonify({"response": bot_response})
 
 
 if __name__ == '__main__':

@@ -11,45 +11,35 @@ body {
 }
 
 header {
+    background-color: #007BFF;
+    color: white;
+    display: flex; /* Use flexbox to align header elements */
+    justify-content: space-between; /* Space between h1 and button */
+    align-items: center; /* Vertically center the items */
+    padding: 10px 20px; /* Adjust padding to space elements */
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    align-items: center;
+}
+
+header button {
     background-color: #4CAF50;
     color: white;
-    padding: 15px 20px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-header a {
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-    font-weight: 400;
-    margin-right: 10px;
-    transition: color 0.3s ease;
-}
-
-header a:hover {
-    color: #e0e0e0;
-}
-
-header .login-button {
-    background-color: #388e3c;
     border: none;
-    color: white;
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 4px;
+    padding: 5px 10px; /* Reduced padding for smaller size */
     cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 50px;
     transition: background-color 0.3s ease;
 }
 
-header .login-button:hover {
-    background-color: #2e7d32;
+header button:hover {
+    background-color: #45a049;
 }
 
 .container {
@@ -95,12 +85,12 @@ input, button {
 
 input:focus {
     outline: none;
-    border-color: #4CAF50;
+    border-color: #007BFF;
     box-shadow: 0 0 8px rgba(76, 175, 80, 0.3);
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #007BFF;
     color: #ffffff;
     border: none;
     cursor: pointer;
@@ -111,7 +101,7 @@ button {
 }
 
 button:hover {
-    background-color: #388e3c;
+    background-color: #0056b3;
     transform: scale(1.05);
 }
 
