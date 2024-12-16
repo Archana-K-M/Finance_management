@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Budget</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_goal.css') }}">
+    <script src="{{ url_for('static', filename='js/script_goal.js') }}" defer></script>
+    <style>
+        /* Form styles */
+        form {
+            max-width: 400px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        form input[type="text"],
+        form input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        form button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Set Budget</h1>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/analysis">Analysis</a></li>
+                <li><a href="/goal">Budget</a></li>
+                <li><a href="/budget_planner">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form id="budget-form">
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" required>
+
+        <label for="limit">Limit:</label>
+        <input type="number" id="limit" name="limit" required>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <p>Budget Set Successfully!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+</body>
+</html>

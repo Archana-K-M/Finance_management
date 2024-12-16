@@ -173,6 +173,14 @@ def hom():
 def ho():
     return render_template('analysis.html')
 
+@app.route('/goal')
+def h():
+    return render_template('goal.html')
+
+@app.route('/add_goal')
+def add_goal():
+    return render_template('add_goal.html')
+
 @app.route('/add_transaction', methods=['POST'])
 def add_transaction():
     #if 'serial_id' not in session:
@@ -307,6 +315,69 @@ def income_vs_expense_analysis(serial_id):
         'net_balance': float(total_income - total_expense)
     }
 
+    return jsonify(output)
+
+@app.route('/set_budget', methods=['POST'])
+def set_budget():
+    data = request.get_json()
+    serial_id = data['serial_id']
+    category = data['category']
+    limit = Decimal(data['limit'])
+
+    # Calculate total spent amount for this category from previous transactions
+    total_spent = db.session.query(func.sum(Record.amount)).filter(
+        and_(Record.serial_id == serial_id, Record.category == category, Record.transaction_type == 'Expense')
+    ).scalar() or Decimal('0')
+
+    # Calculate remaining amount
+    remaining = limit - total_spent
+
+    # Create or update budget entry for the category
+    budget = Budget.query.filter_by(serial_id=serial_id, category=category).first()
+    if budget:
+        # Update existing budget
+        budget.limit = limit
+        budget.spent = total_spent
+        budget.remaining = remaining
+    else:
+        # Create new budget entry
+        budget = Budget(
+            serial_id=serial_id,
+            category=category,
+            limit=limit,
+            spent=total_spent,
+            remaining=remaining
+        )
+        db.session.add(budget)
+
+    db.session.commit()
+
+    return jsonify({
+        "message": "Budget set successfully",
+        "budget": {
+            "category": budget.category,
+            "limit": str(budget.limit),
+            "spent": str(budget.spent),
+            "remaining": str(budget.remaining)
+        }
+    })
+
+@app.route('/get_budgets/<int:serial_id>', methods=['GET'])
+def get_budgets(serial_id):
+    user = Customer.query.get(serial_id)
+    if not user:
+        return jsonify({"message": "User not found"}), 404
+    
+    budgets = Budget.query.filter_by(serial_id=serial_id).all()
+    output = []
+    for budget in budgets:
+        output.append({
+            "budget_id": budget.budget_id,
+            "category": budget.category,
+            "limit": f"{budget.limit:.2f}",
+            "spent": f"{budget.spent:.2f}",
+            "remaining": f"{(budget.limit - budget.spent):.2f}"
+        })
     return jsonify(output)
 
 
