@@ -38,9 +38,9 @@ A modern, responsive finance management website tailored for students. This proj
 ### Prerequisites
 - Python 3.x
 - Install the pakages.
-      ```bash
-      pip install Flask flask-cors flask-sqlalchemy sqlalchemy python-decouple python-dotenv pandas joblib bcrypt psycopg2 requests
-      ```
+   ```bash
+   pip install Flask flask-cors flask-sqlalchemy sqlalchemy python-decouple python-dotenv pandas joblib bcrypt psycopg2 requests
+
 - Create your own API key and add it to .env file.
    1. News API : https://newsapi.org/
    2. Gemini API : https://ai.google.dev/gemini-api/docs
