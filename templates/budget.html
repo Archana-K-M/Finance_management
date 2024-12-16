@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_budget.css') }}">
+</head>
+<body>
+    <header><h1>Budget Planner</h1>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="nav-link">Budget</a>
+            <a href="/analysis" class="nav-link">Analysis</a>
+            <a href="/dashboard" class="nav-link">Home</a>
+        </div>
+    </nav>
+    </header>
+    <!-- Content -->
+    <main>
+        <h2>Transaction Records</h2>
+        <div class="transaction-container">
+            <table id="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Transactions will be dynamically loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- Circular Add Button -->
+    <a href="/entry" class="add-button">
+        +
+    </a>
+
+    <!-- Link to JavaScript -->
+    <script src="{{ url_for('static', filename='js/script_budget.js') }}"></script>
+</body>
+</html>

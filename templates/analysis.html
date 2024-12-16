@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_entry.css') }}">
+    <style>
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px auto;
+            flex-wrap: wrap;
+        }
+        .chart-box {
+            text-align: center;
+            width: 30%;
+        }
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+        h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>    
+        <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/dashboard">Home</a></li>
+            <li><a href="/">Budget</a></li>
+            <li><a href="/budget_planner">Dashboard</a></li>
+        </ul>
+    </nav>
+    </header>
+    
+    <h1>Financial Analysis</h1>
+    <!-- Chart Containers -->
+    <div class="chart-container">
+        <div class="chart-box">
+            <h2>Income Category Analysis</h2>
+            <canvas id="incomeChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h2>Expense Category Analysis</h2>
+            <canvas id="expenseChart"></canvas>
+        </div>
+
+        <div class="chart-box">
+            <h2>Income vs Expense</h2>
+            <canvas id="incomeVsExpenseChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        // Function to fetch data from an API
+        async function fetchData(url) {
+            const response = await fetch(url);
+            return await response.json();
+        }
+
+        // Render Income Category Analysis
+        async function renderIncomeChart() {
+            const data = await fetchData('/income_category_analysis/1'); // Replace '1' with dynamic serial_id if needed
+            const labels = data.map(item => item.category);
+            const values = data.map(item => item.total_amount);
+
+            new Chart(document.getElementById('incomeChart'), {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Income by Category',
+                        data: values,
+                        backgroundColor: ['#36A2EB', '#4BC0C0', '#FFCE56', '#FF6384', '#9966FF'],
+                    }]
+                }
+            });
+        }
+
+        // Render Expense Category Analysis
+        async function renderExpenseChart() {
+            const data = await fetchData('/expense_category_analysis/1'); // Replace '1' with dynamic serial_id if needed
+            const labels = data.map(item => item.category);
+            const values = data.map(item => item.total_amount);
+
+            new Chart(document.getElementById('expenseChart'), {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Expenses by Category',
+                        data: values,
+                        backgroundColor: ['#FF6384', '#FFCE56', '#36A2EB', '#9966FF', '#4BC0C0'],
+                    }]
+                }
+            });
+        }
+
+        // Render Income vs Expense Chart
+        async function renderIncomeVsExpenseChart() {
+            const data = await fetchData('/income_vs_expense_analysis/1'); // Replace '1' with dynamic serial_id if needed
+            new Chart(document.getElementById('incomeVsExpenseChart'), {
+                type: 'pie',
+                data: {
+                    labels: ['Income', 'Expense'],
+                    datasets: [{
+                        data: [data.total_income, data.total_expense],
+                        backgroundColor: ['#36A2EB', '#FF6384']
+                    }]
+                }
+            });
+        }
+
+        // Initialize charts
+        renderIncomeChart();
+        renderExpenseChart();
+        renderIncomeVsExpenseChart();
+    </script>
+</body>
+</html>

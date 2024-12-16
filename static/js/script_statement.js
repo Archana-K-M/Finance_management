@@ -11,7 +11,7 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
     formData.append("file", fileInput);
 
     try {
-        // Send request to Flask backend
+        // Send request to Flask backend to upload file and get graph data
         const response = await fetch("/upload", {
             method: "POST",
             body: formData,
@@ -34,7 +34,7 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
             data: {
                 labels: dates,
                 datasets: [{
-                    label: "Balance over Time",
+                    label: "Amount",
                     data: balances,
                     borderColor: "blue",
                     backgroundColor: "rgba(0, 123, 255, 0.2)",
@@ -69,13 +69,29 @@ document.getElementById("uploadForm").addEventListener("submit", async function 
             }
         });
 
+        // Fetch budget recommendations
+        const totalCredit = result.average_total_credit;// Use the maximum balance as total credit
+        const budgetResponse = await fetch(`/recommend_budgets/${totalCredit}`, {
+            method: "POST"
+        });
+        const budgetRecommendations = await budgetResponse.json();
+
+        // Display budget recommendations
+        const recommendationsList = document.getElementById("budget_recommendations");
+        recommendationsList.innerHTML = ""; // Clear previous data
+        budgetRecommendations.forEach(item => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${item.category}: ₹${item.recommended_limit}`;
+            recommendationsList.appendChild(listItem);
+        });
+
     } catch (error) {
         console.error("Error:", error);
         alert("Error: Unable to process the file.");
     }
 });
 
-// Attach the event listener for the home button outside of the form submission handler
+// Attach the event listener for the home button
 document.getElementById("homeBtn").addEventListener("click", () => {
-    window.location.href = "/dashboard"; // Redirect to the home page
+    window.location.href = "/dashboard";
 });
