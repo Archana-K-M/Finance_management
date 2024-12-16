@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Transaction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_entry.css') }}">
+    <script>
+        function submitTransaction(event) {
+            event.preventDefault();
+
+            const serialId = 22;  // Default Serial ID
+            const formData = {
+                serial_id: serialId,
+                transaction_type: document.getElementById('transaction_type').value,
+                category: document.getElementById('category').value,
+                amount: parseFloat(document.getElementById('amount').value)
+            };
+
+            fetch('/add_transaction', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "Transaction added successfully") {
+                    alert("Transaction added successfully!");
+                    window.location.href = "/budget_planner";
+                } else {
+                    alert("Error: " + (data.message || "Could not add transaction."));
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An error occurred while adding the transaction.");
+            });
+        }
+    </script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="/dashboard">Home</a></li>
+            <li><a href="/analysis">Analysis</a></li>
+            <li><a href="/">Budget</a></li>
+            <li><a href="/budget_planner">Dashboard</a></li>
+        </ul>
+    </nav>
+
+    <!-- Form Section -->
+    <div class="container">
+        <h1>Add Transaction</h1>
+        <form onsubmit="submitTransaction(event)">
+            <label for="transaction_type">Transaction Type:</label>
+            <select id="transaction_type" name="transaction_type" required>
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" placeholder="e.g., Food, Entertainment" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" step="0.01" placeholder="Enter amount" required>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
