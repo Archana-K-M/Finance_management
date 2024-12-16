@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Overview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_goal.css') }}">
+    <script src="{{ url_for('static', filename='js/script_goal.js') }}" defer></script>
+</head>
+<body>
+    <!-- Page Header -->
+    <header>
+        <h1>Budget Overview</h1>
+        <nav>
+            <ul>
+                <li><a href="/dashboard">Home</a></li>
+                <li><a href="/analysis">Analysis</a></li>
+                <li><a href="/budget_planner">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Budget Display -->
+    <main id="budget-container">
+        <!-- Budgets will be displayed dynamically here -->
+    </main>
+
+    <!-- Circular Add Button -->
+    <div class="add-btn" onclick="navigateToAddPage()">
+        +
+    </div>
+</body>
+</html>
