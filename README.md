@@ -129,7 +129,7 @@ We thank the following people for their contributions to this project:
 
 - **Archana K M** - (https://github.com/Archana-K-M)
 - **Anirudhh S** - (https://github.com/rudhhstoic)
-- **Devanidharshan** - (https://github.com/Deva399212)
+- **Devanidharsan K** - (https://github.com/Deva399212)
 - **Varsha G** - (https://github.com/Varshavishnu)
 
 ---
